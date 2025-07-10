@@ -1,8 +1,12 @@
 import Link from "next/link";
 import DesktopNavbar from "@/components/Navbar/DesktopNavbar/DesktopNavbar";
 import MobileNavbar from "@/components/Navbar/MobileNavbar/MobileNavbar";
+import {currentUser} from "@clerk/nextjs/server";
+import {syncUser} from "@/actions/user.action";
 
-function Navbar() {
+async function Navbar() {
+    const user = await currentUser();
+    if (user) await syncUser(); //post request to create a new row in Users table in database
     return (
         <nav
             className="sticky top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
