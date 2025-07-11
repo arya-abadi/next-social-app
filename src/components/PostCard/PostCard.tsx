@@ -11,6 +11,7 @@ import {Avatar, AvatarImage} from "@radix-ui/react-avatar";
 import { DeleteAlertDialog } from "../DeleteAlertDialog/DeleteAlertDialog";
 import {Button} from "@/components/ui/button";
 import {Textarea} from "@/components/ui/textarea";
+import {formatDistanceToNow} from "date-fns";
 
 
 type Posts = Awaited<ReturnType<typeof getPosts>>;
@@ -95,7 +96,7 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
                                     <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                                         <Link href={`/profile/${post.author.username}`}>@{post.author.username}</Link>
                                         <span>•</span>
-                                        {/*<span>{formatDistanceToNow(new Date(post.createdAt))} ago</span>*/}
+                                        <span>{formatDistanceToNow(new Date(post.createdAt))} ago</span>
                                     </div>
                                 </div>
                                 {/* Check if current user is the post author */}
@@ -172,7 +173,7 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
                         </span>
                                                 <span className="text-sm text-muted-foreground">·</span>
                                                 <span className="text-sm text-muted-foreground">
-                          {/*{formatDistanceToNow(new Date(comment.createdAt))} ago*/}
+                          {formatDistanceToNow(new Date(comment.createdAt))} ago
                         </span>
                                             </div>
                                             <p className="text-sm break-words">{comment.content}</p>
